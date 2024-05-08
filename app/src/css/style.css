@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: Euclid;
+        font-weight: 300;
+        src: url(../assets/fonts/EuclidCircularB-Light.otf) format("opentype");
+    }
+
+    @font-face {
+        font-family: Euclid;
+        font-weight: 400;
+        src: url(../assets/fonts/EuclidCircularB-Regular.otf) format("opentype");
+    }
+    @font-face {
+        font-family: Euclid;
+        font-weight: 500;
+        src: url(../assets/fonts/EuclidCircularB-Medium.otf) format("opentype");
+    }
+    @font-face {
+        font-family: Euclid;
+        font-weight: 600;
+        src: url(../assets/fonts/EuclidCircularB-Semibold.otf) format("opentype");
+    }
+    @font-face {
+        font-family: Euclid;
+        font-weight: 700;
+        src: url(../assets/fonts/EuclidCircularB-Bold.otf) format("opentype");
+    }
+
+
+    @font-face {
+        font-family: DMMono;
+        font-weight: 400;
+        src: url(../assets/fonts/DMMono-Regular.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: DMMono;
+        font-weight: 500;
+        src: url(../assets/fonts/DMMono-Medium.ttf) format("truetype");
+    }
+
+    body {
+        @apply text-base font-medium leading-7 antialiased
+    }
+}
+
+@layer utilities {
+    .text-custom-small {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .disappearing {
+        mask-image: linear-gradient(to top, transparent, #000);
+        mask-mode: alpha;
+    }
+
+    .disappearing-lower {
+        mask-image: linear-gradient(to top, transparent, transparent 15%, #000 50%, #000);
+        mask-mode: alpha;
+    }
+
+    .popup-fade-enter-active {
+        animation: fade-in 0.15s ease;
+    }
+
+    .popup-fade-leave-active {
+        animation: fade-out 0.15s ease;
+    }
+}
+
+@layer components {
+    h1 {
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 36px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+    }
+
+    .tag {
+        font-size: 10px;
+        line-height: 16px;
+        font-weight: 500;
+    }
+
+    .card {
+        @apply outline-white/0 shadow-main bg-white rounded-xl p-5 break-inside-avoid gap-3 grid grid-cols-1 transition-all duration-150;
+        @apply hover:outline hover:outline-[3px] hover:outline-gray-900/5;
+    }
+
+    .card.selected {
+        box-shadow: 0 1.5px 2px 0 #1a1f260f;
+        @apply outline outline-[6px] outline-gray-900/5;
+    }
+
+    .btn {
+        box-shadow: 0 2px 6px 0 #00000019, inset 0 2px 0 #ffffff33, inset 0 -1px 1px #00000019;
+        @apply text-body rounded-lg-2 px-3 py-3 gap-1.5 flex items-center justify-center text-white border relative;
+        @apply border-black/10 bg-gradient-to-t from-[#404752] to-[#7c838d];
+        @apply transition-all duration-150 z-0;
+    }
+
+    .btn::before {
+        content: " ";
+        box-shadow: 0 2px 6px 0 #00000019, inset 0 2px 0 #ffffff33, inset 0 -1px 1px #00000019;
+        @apply block absolute w-full rounded-lg-2 h-full border-black/10 bg-gradient-to-t from-[#525963] to-[#7C838D] -z-[1] opacity-0 transition-all duration-150;
+    }
+
+    .btn:not(:disabled):hover::before {
+        @apply opacity-100;
+    }
+
+    .btn:disabled {
+        @apply cursor-not-allowed opacity-70;
+    }
+
+    .input {
+        @apply bg-white p-3.5 py-3 pt-3.5 text-custom-small shadow-main text-gray-700 placeholder-gray-400 rounded-lg-2;
+        @apply font-medium border border-gray-200 transition-all duration-150;
+        @apply outline outline-[3px] outline-white/0 hover:outline-gray-900/5 focus:outline-gray-900/5;
+    }
+
+    .input.has-error {
+        @apply border-2 border-red-400;
+    }
+
+    .popup-selector-btn {
+        @apply bg-white p-3.5 py-5 text-body shadow-main text-gray-600 rounded-xl cursor-pointer;
+        @apply font-medium border border-gray-200 transition-all duration-150;
+        @apply outline outline-[3px] outline-white/0 hover:outline-gray-900/5 focus:outline-gray-900/5;
+        @apply flex items-center justify-center;
+    }
+
+    .selected-popup-selector-btn {
+        @apply bg-white p-2 pr-6 text-body shadow-main text-gray-600 rounded-xl cursor-pointer;
+        @apply font-medium border border-gray-200 transition-all duration-150;
+        @apply outline outline-[3px] outline-white/0 hover:outline-gray-900/5 focus:outline-gray-900/5;
+        @apply flex items-center;
+    }
+
+    input[type=range].range {
+        width: 100%;
+        margin: 3.5px 0;
+        background-color: transparent;
+        -webkit-appearance: none;
+        --value: 1;
+    }
+
+    input[type=range].range:focus {
+        outline: none;
+    }
+
+    input[type=range].range::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, #a7acb4, #a7acb4 var(--value), #e5e7eb var(--value), #e5e7eb);
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        height: 5px;
+        cursor: pointer;
+    }
+
+    input[type=range].range::-webkit-slider-thumb {
+        margin-top: -3.5px;
+        border: none;
+        width: 12px;
+        height: 12px;
+        background: #a7acb4;
+        border-radius: 50px;
+        cursor: grabbing;
+        -webkit-appearance: none;
+    }
+
+    input[type=range].range::-moz-range-track {
+        background: #e5e7eb;
+        border-radius: 100px;
+        width: 100%;
+        height: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    input[type=range].range::-moz-range-progress {
+        background: #a7acb4;
+        height: 5px;
+        border: none;
+        border-radius: 100px;
+    }
+
+    input[type=range].range::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        background: #a7acb4;
+        border: none;
+        border-radius: 50px;
+        cursor: grabbing;
+    }
+
+    input[type=range].range::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 3.5px 0;
+        color: transparent;
+        width: 100%;
+        height: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    input[type=range].range::-ms-fill-lower {
+        background: #a7acb4;
+        border: none;
+        border-radius: 20px;
+    }
+
+    input[type=range].range::-ms-fill-upper {
+        background: #e5e7eb;
+        border: none;
+        border-radius: 20px;
+    }
+
+    input[type=range].range::-ms-thumb {
+        width: 12px;
+        height: 12px;
+        background: #a7acb4;
+        border: none;
+        border-radius: 50px;
+        cursor: grabbing;
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+
+    input[type=range].range:focus::-ms-fill-lower {
+        background: #a7acb4;
+    }
+
+    input[type=range].range:focus::-ms-fill-upper {
+        background: #e5e7eb;
+    }
+
+    /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+    how to remove the vertical space around the range input in IE*/
+    @supports (-ms-ime-align:auto) {
+        /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+        input[type=range].range {
+            margin: 0;
+            /*Edge starts the margin from the thumb, not the track as other browsers do*/
+        }
+    }
+
+    .switch input[type=radio]:checked + label {
+        @apply bg-gray-50 text-gray-700
+    }
+
+    input[type=checkbox] + div.checkbox {
+        @apply w-[20px] h-[20px] rounded-2 border-2 border-gray-600 cursor-pointer
+    }
+
+    input[type=checkbox]:checked + div.checkbox {
+        @apply bg-gray-600;
+        background-image: url("data:image/svg+xml,%3Csvg%20width%3D%229%22%20height%3D%228.25%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m.75%204.5%203%203L8.25.75%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .loading-spinner {
+        background-image: url('data:image/png;base64,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');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .merge-list-element {
+        @apply outline-white/0 flex items-center p-5 rounded-xl cursor-pointer transition-all duration-150;
+        @apply hover:bg-white/50;
+    }
+
+    .merge-list-element.selected {
+        @apply bg-white shadow-main outline outline-[4px] outline-gray-900/5;
+    }
+}
+
+html {
+    @apply text-base;
+}

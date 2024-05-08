@@ -1,0 +1,68 @@
+name: Design Decision
+description: Discussion about a design decision and its implementation.
+title: "[Design Decision]: "
+labels: ["decision"]
+# Uncomment validations when switching to public
+body:
+  - type: input
+    id: decision-title
+    attributes:
+      label: Design Decision Title
+      description: Title of the design decision
+      placeholder: Merge parameters
+    # validations:
+    #   required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of the design decision and the alternatives
+      placeholder: The design choices are...
+    # validations:
+    #   required: false
+  - type: textarea
+    id: discussion
+    attributes:
+      label: Design Discussion
+      description: State the design problem or decision that needs to be made.
+      placeholder: |
+        - Option 1: [Description of option 1]
+        - Option 2: [Description of option 2]
+        - Option 3: [Description of option 3]
+      # validations:
+      #   required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshots or Additional Context (if applicable)
+      description: Attach any screenshots or provide additional information that could help.
+      placeholder: drop attachments here
+    # validations:
+    #   required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Related PRs or Dependencies (if applicable)
+      description: List any PRs or other issues that are related to this one.
+      placeholder: Related to 212
+    # validations:
+    #   required: false
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Additional notes relevant to the issue, such as performance impacts or security considerations.
+      placeholder: Security considerations are...
+    # validations:
+    #   required: false
+  - type: checkboxes
+    attributes:
+      label: Issue Checklist
+      description: Select all that apply
+      options:
+        - label: Have you tagged the relevant team members
+          required: true
+        - label: Have you selected the appropriate labels for this issue (e.g., bug, design, enhancement)?
+          required: true
+        - label: Have you linked this issue to related issues/PRs?
+          required: true
