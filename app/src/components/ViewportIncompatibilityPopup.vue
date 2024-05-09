@@ -9,6 +9,7 @@
       overlay-transition="popup-fade"
       overlay-style="background-color:#00000019"
       content-class="shadow-popup p-3 bg-white/10 rounded-2xl border border-px border-white/20 backdrop-blur-xl"
+      data-test="viewport-compatibility-popup"
   >
     <div class="bg-white p-6 rounded-2xl flex flex-col gap-3 items-center text-center">
         <h3 class="text-gray-800">Widen your screen</h3>

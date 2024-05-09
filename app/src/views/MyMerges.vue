@@ -66,6 +66,7 @@
     <div
       class="bg-white w-1/3 px-10 pt-20 pb-10 flex flex-col sticky top-0 right-0 h-screen"
       :class="{ 'blur-sm': loading, 'select-none': loading }"
+      data-test="sidebar"
     >
       <h3 class="text-gray-800">{{ selectedMerge?.merge_name }}</h3>
 
